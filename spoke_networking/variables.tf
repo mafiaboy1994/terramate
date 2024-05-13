@@ -10,3 +10,7 @@ variable "virtual_network_name" {
 variable "rg_name" {
     type = string
 }
+
+variable "vnet_address_space" {
+    type = list(string)
+}
