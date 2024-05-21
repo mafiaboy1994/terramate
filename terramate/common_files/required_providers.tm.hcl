@@ -22,7 +22,9 @@ generate_hcl "required.providers.tf" {
       condition = tm_contains(terramate.stack.tags, "azurerm")
       labels    = ["azurerm"]
       content {
-        features = {}
+        features {
+          
+        }
       }
     }
   }
