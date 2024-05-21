@@ -1,6 +1,6 @@
 globals {
-  virtual_network_name = "spoke-network"
-  location             = "us-west-2"
+  virtual_network_name = "vnet-ebws-test-network"
+  location             = "uksouth"
   vnet_address_space   = "10.0.0.0/16"
-  rg_name              = "my-resource-group"
+  rg_name              = "tm-vnet-rg"
 }
