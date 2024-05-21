@@ -1,3 +1,8 @@
+provider "azurerm" {
+  features {}
+}
+
+
 module "spoke_networking" {
   source = "../../spoke_networking"
 
