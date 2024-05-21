@@ -1,7 +1,3 @@
-provider "azurerm" {
-  features {}
-}
-
 resource "azurerm_virtual_network" "spoke_vnet" {
   name                = var.virtual_network_name
   location            = var.location
