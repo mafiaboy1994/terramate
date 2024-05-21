@@ -1,7 +1,8 @@
 stack {
   name        = "spoke_networking"
   description = "spoke_networking"
-  id          = "6fba098c-8e30-4748-ac8e-c076be042b68"
+  tags        = ["azurerm"]
+  id          = "3e1194dc-fe00-447e-8aad-1075c254b4c9"
 }
 
 import {
