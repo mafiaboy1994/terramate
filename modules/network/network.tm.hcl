@@ -6,6 +6,7 @@ generate_hcl "network.tf" {
     }
 
     resource "azurerm_virtual_network" "spoke_vnet" {
+      depends_on = [ azurerm_resource_group.vnet_rg ]
       name                = global.virtual_network_name
       location            = global.location
       address_space       = [global.vnet_address_space]

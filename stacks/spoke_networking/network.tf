@@ -8,6 +8,9 @@ resource "azurerm_virtual_network" "spoke_vnet" {
   address_space = [
     "10.0.0.0/16",
   ]
+  depends_on = [
+    azurerm_resource_group.vnet_rg,
+  ]
   location            = "uksouth"
   name                = "vnet-ebws-test-network"
   resource_group_name = "tm-vnet-rg"
