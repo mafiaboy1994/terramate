@@ -1,5 +1,10 @@
 generate_hcl "network.tf" {
   content {
+    resource "azurerm_resource_group" "vnet_rg"{
+      name = "${global.rg_name}"
+      location = global.location
+    }
+
     resource "azurerm_virtual_network" "spoke_vnet" {
       name                = global.virtual_network_name
       location            = global.location
@@ -16,6 +21,8 @@ generate_hcl "network.tf" {
       virtual_network_name = azurerm_virtual_network.spoke_vnet.name
       address_prefixes     = ["10.0.1.0/24"]
     }
+
+    
 
   }
 }

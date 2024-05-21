@@ -1,5 +1,9 @@
 // TERRAMATE: GENERATED AUTOMATICALLY DO NOT EDIT
 
+resource "azurerm_resource_group" "vnet_rg" {
+  location = "uksouth"
+  name     = "tm-vnet-rg"
+}
 resource "azurerm_virtual_network" "spoke_vnet" {
   address_space = [
     "10.0.0.0/16",
