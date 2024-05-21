@@ -23,6 +23,6 @@ resource "azurerm_subnet" "spoke_subnet" {
     "10.0.1.0/24",
   ]
   name                 = "vnet-ebws-test-network-subnet"
-  resource_group_name  = "vnet-ebws-test-network"
+  resource_group_name  = "tm-vnet-rg"
   virtual_network_name = azurerm_virtual_network.spoke_vnet.name
 }

@@ -18,7 +18,7 @@ generate_hcl "network.tf" {
 
     resource "azurerm_subnet" "spoke_subnet" {
       name                 = "${global.virtual_network_name}-subnet"
-      resource_group_name  = global.virtual_network_name
+      resource_group_name  = global.rg_name
       virtual_network_name = azurerm_virtual_network.spoke_vnet.name
       address_prefixes     = ["10.0.1.0/24"]
     }
