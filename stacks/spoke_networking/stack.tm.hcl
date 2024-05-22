@@ -12,4 +12,3 @@ import {
 import {
   source = "/modules/network/variables.tm.hcl"
 }
-
