@@ -9,3 +9,7 @@ import {
   source = "/modules/network/network.tm.hcl"
 }
 
+import {
+  source = "/modules/network/variables.tm.hcl"
+}
+

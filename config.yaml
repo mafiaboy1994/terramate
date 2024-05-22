@@ -1,0 +1,12 @@
+# config.yaml
+connectivity:
+  spoke_networks:
+    network1:
+      virtual_network_name: vnet1
+      location: uksouth
+      vnet_address_space: 10.0.0.0/16
+      rg_name: rg-vnet1
+      subnet:
+        subnet1:
+          name: subnet1
+          address_prefix: 10.0.1.0/24
