@@ -29,6 +29,7 @@ module "storageAccounts" {
     }
   }
 }
+
 output "network_vnet_ids" {
   value = module.network.vnet_id
 }
