@@ -1,5 +1,8 @@
 # Specific configuration of Terramate goes in the terramate block
 terramate {
+
+  # Define Lets variables
+
 }
 
 # We can declare common modules to import for every stack here.
@@ -12,6 +15,7 @@ import {
 import {
   source = "/terramate/common_files/required_providers.tm.hcl"
 }
+
 
 # It will automatically import globals.tm.hcl
 # It will fetch all globals block in the *.tm.hcl on the path to merge them and generate code

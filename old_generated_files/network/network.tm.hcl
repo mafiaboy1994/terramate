@@ -2,7 +2,7 @@ generate_hcl "network.tf" {
   content {
     
     resource "azurerm_resource_group" "vnet_rg"{
-        for_each = var.spoke_networking
+      for_each = var.spoke_networking
       name = "${each.value.rg_name}"
       location = each.value.location
     }

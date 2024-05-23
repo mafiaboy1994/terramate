@@ -1,7 +1,8 @@
 // TERRAMATE: GENERATED AUTOMATICALLY DO NOT EDIT
 
-variable "spoke_networking" {
-  default = {
+module "network" {
+  source = "../../modules/network"
+  spoke_networking = {
     primary = {
       location = "uksouth"
       rg_name  = "rg-vnet1"
@@ -15,19 +16,10 @@ variable "spoke_networking" {
       vnet_address_space   = "10.0.0.0/16"
     }
   }
-  type = map(object({
-    virtual_network_name = string
-    location             = string
-    vnet_address_space   = string
-    rg_name              = string
-    subnet = map(object({
-      address_prefix = string
-      name           = string
-    }))
-  }))
 }
-variable "storageAccounts" {
-  default = {
+module "storageAccounts" {
+  source = "../../modules/storageAccounts"
+  storageAccounts = {
     primary = {
       account_replication_type = "GRS"
       account_tier             = "Standard"
@@ -36,11 +28,13 @@ variable "storageAccounts" {
       sa_name                  = "ebwsstorageaccountlocals"
     }
   }
-  type = map(object({
-    sa_name                  = string
-    account_tier             = string
-    account_replication_type = string
-    resource_group_name      = string
-    location                 = string
-  }))
+}
+output "network_vnet_ids" {
+  value = module.network.vnet_id
+}
+output "network_subnet_ids" {
+  value = module.network.subnet_ids
+}
+output "storage_account_ids" {
+  value = module.storageAccounts.storage_account_ids
 }
