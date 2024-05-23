@@ -12,3 +12,7 @@ import {
 import {
   source = "/modules/network/variables.tm.hcl"
 }
+
+import {
+  source = "/modules/storageAccounts/storageAccounts.tm.hcl"
+}

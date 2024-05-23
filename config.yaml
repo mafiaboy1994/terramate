@@ -1,7 +1,7 @@
 # config.yaml
 connectivity:
   spoke_networks:
-    network1:
+    primary:
       virtual_network_name: vnet1
       location: uksouth
       vnet_address_space: 10.0.0.0/16
@@ -10,3 +10,9 @@ connectivity:
         subnet1:
           name: subnet1
           address_prefix: 10.0.1.0/24
+  storageAccounts:
+    primary:
+      sa_name: ebwsstorageaccountlocals
+      account_tier: "Standard"
+      account_replication_type: "GRS"
+      

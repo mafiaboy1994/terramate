@@ -2,7 +2,7 @@
 
 variable "spoke_networking" {
   default = {
-    network1 = {
+    primary = {
       location = "uksouth"
       rg_name  = "rg-vnet1"
       subnet = {
@@ -24,5 +24,23 @@ variable "spoke_networking" {
       address_prefix = string
       name           = string
     }))
+  }))
+}
+variable "storageAccounts" {
+  default = {
+    primary = {
+      account_replication_type = "GRS"
+      account_tier             = "Standard"
+      location                 = "uksouth"
+      resource_group_name      = "rg-vnet1"
+      sa_name                  = "ebwsstorageaccountlocals"
+    }
+  }
+  type = map(object({
+    sa_name                  = string
+    account_tier             = string
+    account_replication_type = string
+    resource_group_name      = string
+    location                 = string
   }))
 }

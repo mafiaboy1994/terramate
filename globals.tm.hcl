@@ -56,5 +56,15 @@ globals {
     }
   }
 
+  storage_accounts = {
+    for key, account in global.yaml_file.connectivity.storageAccounts : key => {
+      sa_name = account.sa_name
+      resource_group_name = global.spoke_networking[key].rg_name
+      location = global.spoke_networking[key].location
+      account_tier = account.account_tier
+      account_replication_type = account.account_replication_type
+    }
+  }
+
 
 }
