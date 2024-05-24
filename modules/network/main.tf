@@ -16,11 +16,29 @@ resource "azurerm_virtual_network" "spoke_vnet" {
   tags = {
     Name = each.value.virtual_network_name
   }
-  dynamic "subnet" {
-    for_each = each.value.subnet
-    content {
-      name = subnet.value.name
-      address_prefix = subnet.value.address_prefix
-    }
-  }
+}
+
+resource "azurerm_subnet" "subnets" {
+  for_each = local.subnets
+  
+  name = each.value.subnet_name
+  resource_group_name = each.value.resource_group_name
+  virtual_network_name = each.value.vnet_name
+  address_prefixes = [each.value.subnet_address]
+
+}
+
+resource "azurerm_network_security_group" "nsgs" {
+  for_each = local.nsgs 
+
+  name  = each.value.nsgs.name
+  location = each.value.location
+  resource_group_name = each.value.resource_group_name
+}
+
+resource "azurerm_subnet_network_security_group_association" "nsg_assign" {
+  for_each = local.nsgs 
+
+  subnet_id = azurerm_subnet.subnets[each.key].id
+  network_security_group_id = azurerm_network_security_group.nsgs[each.key].id
 }

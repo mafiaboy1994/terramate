@@ -6,36 +6,24 @@ module "network" {
     primary = {
       location = "uksouth"
       rg_name  = "rg-vnet1"
-      subnet = {
+      subnets = {
         subnet1 = {
           address_prefix = "10.0.1.0/24"
           name           = "subnet1"
+          nsgs = {
+            name = "subnet1-nsg"
+          }
+        }
+        subnet2 = {
+          address_prefix = "10.0.2.0/24"
+          name           = "subnet2"
+          nsgs = {
+            name = "subnet2-nsg"
+          }
         }
       }
       virtual_network_name = "vnet1"
       vnet_address_space   = "10.0.0.0/16"
     }
   }
-}
-module "storageAccounts" {
-  source = "../../modules/storageAccounts"
-  storageAccounts = {
-    primary = {
-      account_replication_type = "GRS"
-      account_tier             = "Standard"
-      location                 = "uksouth"
-      resource_group_name      = "rg-vnet1"
-      sa_name                  = "ebwsstorageaccountlocals"
-    }
-  }
-}
-
-output "network_vnet_ids" {
-  value = module.network.vnet_id
-}
-output "network_subnet_ids" {
-  value = module.network.subnet_ids
-}
-output "storage_account_ids" {
-  value = module.storageAccounts.storage_account_ids
 }

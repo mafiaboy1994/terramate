@@ -4,9 +4,12 @@ variable "spoke_networking" {
         location             = string
         vnet_address_space   = string
         rg_name              = string
-        subnet               = map(object({
+        subnets               = optional(map(object({
           address_prefix = string
           name           = string
-        }))
+          nsgs = optional(object({
+            name = string
+          }))
+        })))
     }))
  }

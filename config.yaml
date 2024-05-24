@@ -6,10 +6,17 @@ connectivity:
       location: uksouth
       vnet_address_space: 10.0.0.0/16
       rg_name: rg-vnet1
-      subnet:
+      subnets:
         subnet1:
           name: subnet1
           address_prefix: 10.0.1.0/24
+          nsgs:
+            name: subnet1-nsg
+        subnet2:
+          name: subnet2
+          address_prefix: 10.0.2.0/24
+          nsgs:
+            name: subnet2-nsg
   storageAccounts:
     primary:
       sa_name: ebwsstorageaccountlocals
