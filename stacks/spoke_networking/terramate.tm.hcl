@@ -9,5 +9,6 @@ generate_hcl "main.tf" {
             source = "../../modules/network"
             spoke_networking = let.network_config.spoke_networking
         }
+        
     }
 }
