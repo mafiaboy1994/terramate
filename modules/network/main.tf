@@ -1,14 +1,14 @@
-resource "azurerm_resource_group" "vnet_rg"{
+resource "azurerm_resource_group" "vnet_rg" {
   for_each = var.spoke_networking
-  name = "${each.value.rg_name}"
+  name     = each.value.rg_name
   location = each.value.location
 }
 
 
 resource "azurerm_virtual_network" "spoke_vnet" {
-  depends_on = [ azurerm_resource_group.vnet_rg ]
-  for_each = var.spoke_networking
-  
+  depends_on = [azurerm_resource_group.vnet_rg]
+  for_each   = var.spoke_networking
+
   name                = each.value.virtual_network_name
   location            = each.value.location
   address_space       = [each.value.vnet_address_space]
@@ -19,26 +19,27 @@ resource "azurerm_virtual_network" "spoke_vnet" {
 }
 
 resource "azurerm_subnet" "subnets" {
-  for_each = local.subnets
-  
-  name = each.value.subnet_name
-  resource_group_name = each.value.resource_group_name
+  for_each   = local.subnets
+  depends_on = [azurerm_virtual_network.spoke_vnet]
+
+  name                 = each.value.subnet_name
+  resource_group_name  = each.value.resource_group_name
   virtual_network_name = each.value.vnet_name
-  address_prefixes = [each.value.subnet_address]
+  address_prefixes     = [each.value.subnet_address]
 
 }
 
 resource "azurerm_network_security_group" "nsgs" {
-  for_each = local.nsgs 
+  for_each = local.nsgs
 
-  name  = each.value.nsgs.name
-  location = each.value.location
-  resource_group_name = each.value.resource_group_name
+  name                = each.value.nsgs.name
+  location            = each.value.location
+  resource_group_name = azurerm_resource_group.vnet_rg[each.value.key].name
 }
 
 resource "azurerm_subnet_network_security_group_association" "nsg_assign" {
-  for_each = local.nsgs 
+  for_each = azurerm_network_security_group.nsgs
 
-  subnet_id = azurerm_subnet.subnets[each.key].id
-  network_security_group_id = azurerm_network_security_group.nsgs[each.key].id
+  subnet_id                 = azurerm_subnet.subnets[each.key].id
+  network_security_group_id = each.value.id
 }

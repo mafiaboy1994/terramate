@@ -1,6 +1,12 @@
 # Specific configuration of Terramate goes in the terramate block
 terramate {
 
+  config {
+    cloud {
+      organization = "EWS"
+    }
+  }
+
   # Define Lets variables
 
 }
